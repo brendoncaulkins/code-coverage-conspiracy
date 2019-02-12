@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
+import { AuthenticationService } from '../services/authentication/authentication.service'
+import { Observable } from 'rxjs'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,9 +11,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup
+  loggedIn: Observable<boolean>
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public authService: AuthenticationService
+  ) {
     this.formGroup = this.buildForm()
+    this.loggedIn = this.authService.getStatus()
+    this.authService.logout()
   }
 
   ngOnInit() {}
@@ -23,7 +32,7 @@ export class LoginComponent implements OnInit {
       ],
       password: [
         '',
-        [Validators.required, Validators.minLength(8), Validators.maxLength(32)]
+        [Validators.required, Validators.minLength(6), Validators.maxLength(32)]
       ]
     })
   }

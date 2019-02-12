@@ -2,13 +2,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TestBed, async } from '@angular/core/testing'
 
 import { AppComponent } from './app.component'
+import { AuthenticationService } from './services/authentication/authentication.service'
 import { LoginComponent } from './login/login.component'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, LoginComponent],
-      imports: [FormsModule, ReactiveFormsModule]
+      imports: [FormsModule, ReactiveFormsModule],
+      providers: [AuthenticationService]
     }).compileComponents()
   }))
 
