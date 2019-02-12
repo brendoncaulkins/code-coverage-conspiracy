@@ -1,13 +1,13 @@
-import { AuthenticationService } from './services/authentication/authentication.service'
+import { AuthenticationService } from '../services/authentication/authentication.service'
 import { Component } from '@angular/core'
 import { Observable } from 'rxjs'
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent {
+export class HomeComponent {
   title = 'code-coverage-conspiracy'
   loggedIn: Observable<boolean>
 
