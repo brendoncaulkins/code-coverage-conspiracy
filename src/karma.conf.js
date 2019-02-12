@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-spec-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -20,12 +21,21 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
-  });
-};
+    singleRun: false,
+    specReporter: {
+      maxLogLines: 5, // limit number of lines logged per test
+      suppressErrorSummary: false, // do not print error summary
+      suppressFailed: false, // do not print information about failed tests
+      suppressPassed: false, // do not print information about passed tests
+      suppressSkipped: true, // do not print information about skipped tests
+      showSpecTiming: true, // print the time elapsed for each spec
+      failFast: false // test would finish with error when a first fail occurs.
+    }
+  })
+}
