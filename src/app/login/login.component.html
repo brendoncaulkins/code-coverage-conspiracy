@@ -1,0 +1,24 @@
+<div [formGroup]="formGroup">
+  <div>
+    <label for="app-username">Username:</label>
+    <input id="app-username" formControlName="username" [ngClass]="{'app-error': showErrors(usernameField)}" required minlength="5" maxlength="15">
+    <div *ngIf="showErrors(usernameField)" class="app-error-message">
+      <div *ngIf="usernameField.hasError('required')">This field is required</div>
+      <div *ngIf="passwordField.hasError('minlength') && !passwordField.hasError('required')">Minimum 5 characters required</div>
+      <div *ngIf="passwordField.hasError('maxlength')">Maximum 15 characters allowed</div>
+    </div>
+  </div>
+  <div>
+    <label for="app-password">Password:</label>
+    <input id="app-password" type="password" [ngClass]="{'app-error': showErrors(passwordField)}" formControlName="password" required minlength="8" maxlength="32">
+    <div *ngIf="showErrors(passwordField)" class="app-error-message">
+        <div *ngIf="passwordField.hasError('required')">This field is required</div>
+        <div *ngIf="passwordField.hasError('minlength') && !passwordField.hasError('required')">Minimum 8 characters required</div>
+        <div *ngIf="passwordField.hasError('maxlength')">Maximum 32 characters allowed</div>
+      </div>
+  </div>
+  <button value="login">Login!</button>
+</div>
+
+
+
