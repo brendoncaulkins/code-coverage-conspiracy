@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { AuthenticationService } from '../services/authentication/authentication.service'
-import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-login',
@@ -11,15 +10,12 @@ import { Observable } from 'rxjs'
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup
-  loggedIn: Observable<boolean>
 
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthenticationService
   ) {
     this.formGroup = this.buildForm()
-    this.loggedIn = this.authService.getStatus()
-    this.authService.logout()
   }
 
   ngOnInit() {}

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AuthenticationService } from './services/authentication/authentication.service'
+import { Component } from '@angular/core'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'code-coverage-conspiracy';
+  title = 'code-coverage-conspiracy'
+  loggedIn: Observable<boolean>
+
+  constructor(private authService: AuthenticationService) {
+    this.loggedIn = this.authService.getStatus()
+    this.authService.logout()
+  }
 }

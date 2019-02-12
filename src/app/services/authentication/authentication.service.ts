@@ -20,7 +20,8 @@ export class AuthenticationService {
     this.status.next(false)
   }
 
-  login(): void {
+  login(username: string, password: string): void {
+    // assume it's good for now
     this.status.next(true)
   }
 }
