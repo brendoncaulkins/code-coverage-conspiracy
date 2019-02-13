@@ -1,0 +1,13 @@
+<div fxLayout="column" fxLayoutAlign="start stretch">
+  <h3>Conspiracy List:</h3>
+  <div *ngFor="let conspiracy of conspiracies | async" fxLayout="column" fxLayoutALign="start stretch">
+    <div fxFlex="100">
+      <div fxFlex="1 0 50">{{ conspiracy?.title }}</div>
+      <button value="edit" (click)="chosenConspiracy.emit(conspiracy)" fxFlex="0 1 10" fxFlexAlign="end">Edit</button>
+      <button value="delete" fxFlex="0 1 10" fxFlexAlign="end" (click)="conspiracyService.deleteConspiracy(conspiracy.id)">Delete</button>
+    </div>
+    <div fxFlex="100">
+      <hr />
+    </div>
+  </div>
+</div>

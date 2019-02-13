@@ -1,4 +1,5 @@
 <div [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="start stretch">
+  <h3>Add a Conspiracy:</h3>
   <div fxFlex="100" fxLayout="column">
     <label for="conspiracy-title">Conspiracy Title:</label>
     <input fxFlex="100" id="consiracy-title" formControlName="title" required minlength="10">
@@ -7,7 +8,7 @@
       <div *ngIf="titleField.hasError('minlength') && !titleField.hasError('required')">Minimum 10 characters required</div>
     </div>
   </div>
-  <div formArrayName="conspirators" fxFlex="100" fxLayout="column">
+  <div formArrayName="conspirators" fxFlex="100" fxLayout="column" fxLayoutALign="start stretch">
     <label>Conspirators:</label>
     <div fxFlex="100" *ngFor="let conspirator of conspiracy?.conspirators; let i = index">
       <input [id]="'consirators-list-item-' + i" [formControlName]="i" fxFlex="100">
@@ -26,5 +27,5 @@
         <div *ngIf="detailsField.hasError('minlength') && !detailsField.hasError('required')">Minimum 10 characters required</div>
       </div>
   </div>
-  <button value="add" (click)="submitConspiracy()" fxFlex="0 1 15" fxFlexAlign="start">Add Conspiracy!</button>
+  <button value="add" (click)="submitConspiracy()" fxFlex="0 1 15" fxFlexAlign="start">{{ editing ? 'Update' : 'Add' }} Conspiracy!</button>
 </div>

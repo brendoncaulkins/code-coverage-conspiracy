@@ -1,13 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div fxLayout="column" fxLayoutAlign="start stretch">
-  <h1 fxFlexAlign="center">
-    Welcome to {{ title }}!
-  </h1>
+  <h1 fxFlexAlign="center">Welcome to {{ title }}!</h1>
   <div fxFlexAlign="center">
     <img width="300" alt="I want to believe" src="assets/img/i-want-to-believe.jpg">
   </div>
   <app-login *ngIf="!(loggedIn | async)" fxFlex="100" fxFlexAlign="center"></app-login>
-  <div *ngIf="loggedIn | async" fxFlex="100">
-    <app-add-conspiracy fxFlex="48"></app-add-conspiracy>
+  <div *ngIf="loggedIn | async" fxFlex="100" fxLayoutGap="10px" fxLayout="start stretch">
+    <app-add-conspiracy [conspiracy]="editConspiracy | async" fxFlex="0 1 48"></app-add-conspiracy>
+    <app-list-conspiracies fxFlex="0 1 48" (chosenConspiracy)="editConspiracy.next($event)"></app-list-conspiracies>
   </div>
 </div>
