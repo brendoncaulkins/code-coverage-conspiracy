@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
 import { Conspiracy } from 'src/app/models/conspiracy.model'
 import { Injectable } from '@angular/core'
 
-const codeCoverageConspiracy: Conspiracy = {
+export const codeCoverageConspiracy: Conspiracy = {
   id: 1,
   title: 'The Code Coverage Conspiracy',
   conspirators: ['Jasmine', 'Angular TestBed', 'Angular CLI'],
@@ -11,7 +11,7 @@ const codeCoverageConspiracy: Conspiracy = {
     'These default components of the Angular development ecosystem construe and hide the true nature of what your tests cover!'
 }
 
-const enemyOfTheState: Conspiracy = {
+export const enemyOfTheState: Conspiracy = {
   id: 2,
   title: 'Enemy of the State',
   conspirators: [
@@ -24,7 +24,7 @@ const enemyOfTheState: Conspiracy = {
     'The film tells the story of a group of NSA agents conspiring to kill a Congressman and the cover up that ensues after a tape of the murder is discovered.'
 }
 
-const eraser: Conspiracy = {
+export const eraser: Conspiracy = {
   id: 3,
   title: 'Eraser',
   conspirators: [
@@ -40,7 +40,7 @@ const eraser: Conspiracy = {
   providedIn: 'root'
 })
 export class ConspiracyService {
-  private conspiracies: BehaviorSubject<Conspiracy[]>
+  conspiracies: BehaviorSubject<Conspiracy[]>
 
   constructor() {
     this.conspiracies = new BehaviorSubject<Conspiracy[]>([])
