@@ -20,6 +20,7 @@ const enemyOfTheState: Conspiracy = {
     'Agent Reynolds (John Voight)'
   ],
   details:
+    // tslint:disable-next-line:max-line-length
     'The film tells the story of a group of NSA agents conspiring to kill a Congressman and the cover up that ensues after a tape of the murder is discovered.'
 }
 
