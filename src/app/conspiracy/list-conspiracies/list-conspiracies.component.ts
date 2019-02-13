@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators'
   templateUrl: './list-conspiracies.component.html',
   styleUrls: ['./list-conspiracies.component.css']
 })
-export class ListConspiraciesComponent implements OnInit {
+export class ListConspiraciesComponent {
   @Output() chosenConspiracy: EventEmitter<Conspiracy>
 
   conspiracies: Observable<Conspiracy[]>
@@ -22,11 +22,9 @@ export class ListConspiraciesComponent implements OnInit {
       .pipe(map(list => list.sort((a, b) => this.sortByTitle(a, b))))
   }
 
-  ngOnInit() {}
-
   sortByTitle(a: Conspiracy, b: Conspiracy): number {
-    const x = a.title.toLowerCase()
-    const y = b.title.toLowerCase()
+    const x = a.title ? a.title.toLowerCase() : null
+    const y = b.title ? b.title.toLowerCase() : null
     if (x < y) {
       return -1
     }
