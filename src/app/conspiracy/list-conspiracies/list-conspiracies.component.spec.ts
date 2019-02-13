@@ -1,25 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ListConspiraciesComponent } from './list-conspiracies.component';
+import { ConspiracyService } from 'src/app/services/conspiracy/conspiracy.service'
+import { ListConspiraciesComponent } from './list-conspiracies.component'
 
 describe('ListConspiraciesComponent', () => {
-  let component: ListConspiraciesComponent;
-  let fixture: ComponentFixture<ListConspiraciesComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListConspiraciesComponent ]
-    })
-    .compileComponents();
-  }));
+  let component: ListConspiraciesComponent
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListConspiraciesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    component = new ListConspiraciesComponent(
+      new ConspiracyService() // Normally this would be a mock service
+    )
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

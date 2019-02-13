@@ -1,23 +1,15 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
 import { AddConspiracyComponent } from './add-conspiracy.component'
+import { ConspiracyService } from 'src/app/services/conspiracy/conspiracy.service'
+import { FormBuilder } from '@angular/forms'
 
 describe('AddConspiracyComponent', () => {
   let component: AddConspiracyComponent
-  let fixture: ComponentFixture<AddConspiracyComponent>
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AddConspiracyComponent],
-      imports: [FormsModule, ReactiveFormsModule]
-    }).compileComponents()
-  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddConspiracyComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
+    component = new AddConspiracyComponent(
+      new FormBuilder(),
+      new ConspiracyService() // Normally, this would be a mock service
+    )
   })
 
   it('should create', () => {

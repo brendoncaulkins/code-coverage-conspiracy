@@ -1,12 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ConspiracyService } from './conspiracy.service';
+import { ConspiracyService } from './conspiracy.service'
 
 describe('ConspiracyService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: ConspiracyService
+
+  beforeEach(() => {
+    service = new ConspiracyService()
+  })
 
   it('should be created', () => {
-    const service: ConspiracyService = TestBed.get(ConspiracyService);
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})
