@@ -1,8 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
+<div fxLayout="column" fxLayoutAlign="start stretch">
+  <h1 fxFlexAlign="center">
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="I want to believe" src="assets/img/i-want-to-believe.jpg">
+  <div fxFlexAlign="center">
+    <img width="300" alt="I want to believe" src="assets/img/i-want-to-believe.jpg">
+  </div>
+  <app-login *ngIf="!(loggedIn | async)" fxFlex="100" fxFlexAlign="center"></app-login>
+  <div *ngIf="loggedIn | async" fxFlex="100">
+    <app-add-conspiracy fxFlex="48"></app-add-conspiracy>
+  </div>
 </div>
-<app-login *ngIf="!(loggedIn | async)"></app-login>

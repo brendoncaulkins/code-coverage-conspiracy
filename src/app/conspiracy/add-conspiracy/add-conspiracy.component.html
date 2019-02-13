@@ -1,0 +1,30 @@
+<div [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="start stretch">
+  <div fxFlex="100" fxLayout="column">
+    <label for="conspiracy-title">Conspiracy Title:</label>
+    <input fxFlex="100" id="consiracy-title" formControlName="title" required minlength="10">
+    <div *ngIf="showErrors(titleField)" class="app-error-message">
+      <div *ngIf="titleField.hasError('required')">This field is required</div>
+      <div *ngIf="titleField.hasError('minlength') && !titleField.hasError('required')">Minimum 10 characters required</div>
+    </div>
+  </div>
+  <div formArrayName="conspirators" fxFlex="100" fxLayout="column">
+    <label>Conspirators:</label>
+    <div fxFlex="100" *ngFor="let conspirator of conspiracy?.conspirators; let i = index">
+      <input [id]="'consirators-list-item-' + i" [formControlName]="i" fxFlex="100">
+    </div>
+    <button fxFlex="0 1 15" fxFlexAlign="end" value="add-conspirator" (click)="addConspirator()">+ Add Conspirator</button>
+    <div *ngIf="showErrors(conspiratorsArrayField)" class="app-error-message">
+      <div *ngIf="conspiratorsArrayField.hasError('minlength')">Minimum 1 conspirators required</div>
+    </div>
+  </div>
+  <div fxFlex="1 0 100" fxLayout="column">
+    <label for="conspiracy-details">Conspiracy Details:</label>
+    <textarea fxFlex="100" id="consiracy-details" formControlName="details" required maxlength="10000"></textarea>
+    <div fxFlexAlign="end">{{detailsField?.value?.length | number}} / 10,000</div>
+    <div *ngIf="showErrors(detailsField)" class="app-error-message">
+        <div *ngIf="detailsField.hasError('required')">This field is required</div>
+        <div *ngIf="detailsField.hasError('minlength') && !detailsField.hasError('required')">Minimum 10 characters required</div>
+      </div>
+  </div>
+  <button value="add" (click)="submitConspiracy()" fxFlex="0 1 15" fxFlexAlign="start">Add Conspiracy!</button>
+</div>

@@ -1,6 +1,7 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TestBed, async } from '@angular/core/testing'
 
+import { AddConspiracyComponent } from '../conspiracy/add-conspiracy/add-conspiracy.component'
 import { AuthenticationService } from '../services/authentication/authentication.service'
 import { HomeComponent } from './home.component'
 import { LoginComponent } from '../login/login.component'
@@ -8,7 +9,7 @@ import { LoginComponent } from '../login/login.component'
 describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, LoginComponent],
+      declarations: [HomeComponent, LoginComponent, AddConspiracyComponent],
       imports: [FormsModule, ReactiveFormsModule],
       providers: [AuthenticationService]
     }).compileComponents()
