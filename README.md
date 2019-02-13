@@ -26,5 +26,5 @@ Two components have 100% coverage, as does the model and **the model has no spec
 ## What's happening? Why does this happen?
 
 - The **Angular TestBed** spools up the component and calls the template bindings as it runs through a component lifecycle check. Any function tied into the template that's not a response to an action (like `(click)`) gets called.
-- **Jasmine** has no way to check that the code being executed is actually examined, so it can only tell **Cobertura** what lines were ran, so those get counted.
-- Thus, if you tie as many all of your functions into lifecycle hooks or template calls, **Angular** will execute all of the code for you, and trick **Jasmine** & **Cobertura** into counting it.
+- **Jasmine** has no way to check that the code being executed is actually examined, so it can only tell **Karma-Istanbul** what lines were ran, so those get counted.
+- Thus, if you tie as many all of your functions into lifecycle hooks or template calls, **Angular** will execute all of the code for you, and trick **Jasmine** & **Karma-Istanbul** into counting it.
