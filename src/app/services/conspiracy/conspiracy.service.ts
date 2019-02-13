@@ -57,13 +57,15 @@ export class ConspiracyService {
   }
 
   addConspiracy(conspiracy: Conspiracy): void {
-    const updatedList = this.conspiracies.value
-    conspiracy.id = updatedList.length + 1
+    const updatedList = [...this.conspiracies.value]
+    conspiracy.id = conspiracy.id ? conspiracy.id : updatedList.length + 1
+    conspiracy.conspirators = conspiracy.conspirators.filter(c => !!c)
     updatedList.push(conspiracy)
     this.conspiracies.next(updatedList)
   }
 
   deleteConspiracy(id: number): void {
-    this.conspiracies.next(this.conspiracies.value.filter(c => c.id !== id))
+    const updatedList = [...this.conspiracies.value]
+    this.conspiracies.next(updatedList.filter(c => c.id !== id))
   }
 }

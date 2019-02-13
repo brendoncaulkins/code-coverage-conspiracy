@@ -10,7 +10,7 @@
   </div>
   <div formArrayName="conspirators" fxFlex="100" fxLayout="column" fxLayoutALign="start stretch">
     <label>Conspirators:</label>
-    <div fxFlex="100" *ngFor="let conspirator of conspiracy?.conspirators; let i = index">
+    <div *ngFor="let conspirator of conspiracy?.conspirators; let i = index" fxFlex="100">
       <input [id]="'consirators-list-item-' + i" [formControlName]="i" fxFlex="100">
     </div>
     <button fxFlex="0 1 15" fxFlexAlign="end" value="add-conspirator" (click)="addConspirator()">+ Add Conspirator</button>

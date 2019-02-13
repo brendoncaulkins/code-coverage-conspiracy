@@ -38,18 +38,14 @@ export class AddConspiracyComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const conspiracyChange: SimpleChange = changes['conspiracy']
-    this.configureForm(conspiracyChange.currentValue)
+    if (conspiracyChange.currentValue) {
+      this.configureForm(conspiracyChange.currentValue)
+    }
   }
 
   ngOnInit() {
-    this.conspiracy = new Conspiracy()
-    this.addConspirator()
-    this.configureForm(this.conspiracy)
-  }
-
-  configureForm(conspiracy: Conspiracy): void {
-    this.editing = conspiracy && conspiracy.id !== null
-    this.patchForm(conspiracy)
+    // Always start clean
+    this.resetForm()
   }
 
   buildForm(): FormGroup {
@@ -60,11 +56,32 @@ export class AddConspiracyComponent implements OnInit, OnChanges {
     })
   }
 
+  configureForm(conspiracy: Conspiracy): void {
+    this.editing = conspiracy && conspiracy.id !== null
+    this.patchForm(conspiracy)
+  }
+
   patchForm(conspiracy: Conspiracy): void {
     conspiracy.conspirators.forEach(() =>
       this.conspiratorsArrayField.push(this.formBuilder.control(''))
     )
+
     this.formGroup.patchValue(conspiracy)
+  }
+
+  resetForm(): void {
+    // Clear form data and excess form controls
+    this.formGroup.reset()
+    while (this.conspiratorsArrayField.length > 1) {
+      this.conspiratorsArrayField.removeAt(1)
+    }
+
+    // Reset data model
+    this.conspiracy = new Conspiracy()
+    this.conspiracy.conspirators.push(null)
+
+    // Configure the form
+    this.configureForm(this.conspiracy)
   }
 
   addConspirator() {
@@ -75,25 +92,18 @@ export class AddConspiracyComponent implements OnInit, OnChanges {
   }
 
   submitConspiracy(): void {
+    // Build data to send
+    const updatedConspiracy = {
+      ...this.formGroup.value,
+      id: this.editing ? this.conspiracy.id : null
+    } as Conspiracy
+
     if (!this.editing) {
-      this.conspiracyService.addConspiracy(this.formGroup.value as Conspiracy)
-    } else {
-      const updatedConspiracy = this.formGroup.value as Conspiracy
-      updatedConspiracy.id = this.conspiracy.id
       this.conspiracyService.deleteConspiracy(updatedConspiracy.id)
-      this.conspiracyService.addConspiracy(updatedConspiracy)
     }
 
+    this.conspiracyService.addConspiracy(updatedConspiracy)
     this.resetForm()
-    this.editing = false
-  }
-
-  resetForm(): void {
-    this.formGroup.reset()
-    this.conspiracy.conspirators = [null]
-    while (this.conspiratorsArrayField.length > 1) {
-      this.conspiratorsArrayField.removeAt(1)
-    }
   }
 
   showErrors(control: FormControl): boolean {
